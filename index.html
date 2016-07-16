@@ -1,17 +1,48 @@
-<html ng-app="helloWorld">
+<html ng-app="listaTelefonica">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <head>
-	<title>Hello Word</title>
-	<script src="angular-1.5.7/angular.js"></script>
+	<title>Lista Telefonica</title>
+	<script src="lib/angular/angular.js"></script>
+	<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+	<style>
+		.jumbotron{
+			width: 400px;
+			text-align: center;
+			margin-top: 20px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.table{
+			margin-top: 20px;
+		}
+	</style>
 	<script>
-		angular.module("helloWorld", []); //Cria um módulo
-		angular.module("helloWorld").controller("helloWorldCtrl", function($scope){
-			$scope.message = "Hello World!";
+		angular.module("listaTelefonica", []);
+		angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function($scope){
+			$scope.titulo = "Lista Telefônica";
+			$scope.contatos=[
+				{nome: "Pedro", telefone: "(96)99999:9999"},
+				{nome: "João", telefone: "(96)88888:8888"},
+				{nome: "Maria", telefone: "(96)77777:7777"},
+			];
 		});
 	</script>
 </head>
-<body>
-	<div ng-controller="helloWorldCtrl">
-		{{ message }}
+<body ng-controller="listaTelefonicaCtrl">
+	<div class="jumbotron">
+		<h3>{{ titulo }}</h3>
+		<table class="table table-striped">
+			<tr>
+			    <th>Nome</th>
+			    <th>Telefone</th>
+			</tr>
+			<tr ng-repeat="contato in contatos">
+				<td>{{ contato.nome }}</td>
+				<td>{{ contato.telefone }}</td>
+				<!-- Mais dinamico -->
+				<!-- <td ng-repeat="(key, value) in contato">{{ value }}</td> -->
+			</tr>
+		</table>
 	</div>
 </body>
 </html>
